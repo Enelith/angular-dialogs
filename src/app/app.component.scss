@@ -1,0 +1,74 @@
+
+
+/******************************************************
+        CUSTOM CSS
+******************************************************/
+
+::ng-deep .w50 {
+  width: 50%;
+}
+
+::ng-deep .w75 {
+  width: 75%;
+}
+
+::ng-deep .main-message {
+
+  +.emphasize-message {
+    margin-top: 1em;
+  }
+}
+
+::ng-deep .emphasize-message {
+  text-align: center;
+  font-weight: bold;
+
+  +.sub-message {
+    margin-top: 1em;
+  }
+}
+
+::ng-deep .sub-message {
+  text-align: right;
+  font-style: italic;
+  font-size: 85%;
+}
+
+/******************************************************
+        MATERIAL ICONS CSS
+******************************************************/
+
+::ng-deep .mat-fab.mat-primary.warning-validation, 
+::ng-deep .mat-flat-button.mat-primary.warning-validation, 
+::ng-deep .mat-mini-fab.mat-primary.warning-validation, 
+::ng-deep .mat-raised-button.mat-primary.warning-validation {
+  background: lightsalmon;
+}
+
+/******************************************************
+        
+******************************************************/
+
+.padding-bottom-md-xs {
+  padding-bottom: 15px !important;
+}
+
+.padding-top-md-xs {
+  padding-top: 15px !important;
+}
+
+.margin-bottom-xl-xs {
+  margin-bottom: 30px !important;
+}
+
+.margin-top-xl-xs {
+  margin-top: 30px !important;
+}
+
+.background-black4-xs {
+  background-color: #4d4d4d !important;
+}
+
+.text-white1-xs {
+  color: #fff !important;
+}

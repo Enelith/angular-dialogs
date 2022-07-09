@@ -21,12 +21,26 @@
     "lib": [
       "es2020",
       "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    ],
+      // Aliases definition
+      "paths": {
+        "@app/*": [
+          "src/app/*"
+        ],
+        "@environments/*": [
+          "src/environments/*"
+        ],
+        "@scss/*": [
+          "src/scss/*"
+        ]
+      },
+    },
+    "angularCompilerOptions": {
+      "enableI18nLegacyMessageIdFormat": false,
+      "strictInjectionParameters": true,
+      "strictInputAccessModifiers": true,
+      "strictTemplates": true,
+      // Get rid of Property '...' has no initializer and is not definitely assigned in the constructor
+      "strictPropertyInitialization": false
+    }
   }
-}

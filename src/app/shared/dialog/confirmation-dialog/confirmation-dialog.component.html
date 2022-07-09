@@ -1,0 +1,23 @@
+	<h2 mat-dialog-title>{{ data.title }}</h2>
+
+	<mat-dialog-content class="mat-typography">
+		<div class="buffer-loading">
+			<p class="main-message">
+				{{ data.mainMessage }}
+			</p>
+			<p class="emphasize-message">
+				{{ data.emphMessage }}
+			</p>
+			<p class="sub-message">
+				{{ data.subMessage }}
+			</p>
+		</div>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button mat-dialog-close>
+			{{ data.cancelButtonMessage ? data.cancelButtonMessage : defaultCancelButtonMessage }}
+		</button>
+		<button mat-raised-button color="primary" [mat-dialog-close]="true" [ngClass]="data.cssClass">
+			{{ data.confirmButtonMessage ? data.confirmButtonMessage : defaultConfirmButtonMessage }}
+		</button>
+	</mat-dialog-actions>

@@ -1,0 +1,92 @@
+<!--        
+creditPiece: ""
+dateCreationPiece: "03/01/2022"
+dateExigibilitePiece: "03/01/2022"
+debitPiece: "350,00"
+detail: [{
+    credit: ""
+    dateCreation: "03/01/2022"
+    debit: "350,00"
+    libelle: "Assurance GF Tarification TI"
+    numPieceParent: null
+}]
+factureBJMOD: "false"
+factureRCPNetanswer: "true"
+libellePiece: "Avis échéance Gar. Fin. TRANSACTION"
+naturePiece: "GF"
+numPiece: "138160"
+typePiece: "FACTU"
+--> 
+<div class="">
+  <h1>DETAILS {{ data.numPiece }}</h1>
+    <div class="">
+      <div class="">creditPiece : {{ data.creditPiece }}</div>
+      <div class="">dateCreationPiece : {{ data.dateCreationPiece }}</div>
+      <div class="">dateExigibilitePiece : {{ data.dateExigibilitePiece }}</div>
+      <div class="">debitPiece : {{ data.debitPiece }}</div>
+      <div class="">factureBJMOD : {{ data.factureBJMOD }}</div>
+      <div class="">factureRCPNetanswer : {{ data.factureRCPNetanswer }}</div>
+      <div class="">libellePiece : {{ data.libellePiece }}</div>
+      <div class="">naturePiece : {{ data.naturePiece }}</div>
+      <div class="">numPiece : {{ data.numPiece }}</div>
+      <div class="">typePiece : {{ data.typePiece }}</div>
+    </div>
+
+    <div class="table-container" *ngIf="checkDataSource(); then showResults else noResults"></div>
+
+    <ng-template #showResults>
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table matSort [dataSource]="dataSource">
+          <!-- dateCreation Column -->
+          <ng-container matColumnDef="dateCreation">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Date de création </th>
+            <td mat-cell *matCellDef="let detail"> {{ detail.dateCreation }} </td>
+            <td mat-footer-cell *matFooterCellDef colspan="2"> Total </td>
+          </ng-container>
+
+          <!-- libelle Column -->
+          <ng-container matColumnDef="libelle">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Libellé </th>
+            <td mat-cell *matCellDef="let detail"> {{ detail.libelle }} </td>
+          </ng-container>
+
+          <!-- debit Column -->
+          <ng-container matColumnDef="debit">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Débit </th>
+            <td mat-cell *matCellDef="let detail"> {{ toNumber(detail.debit) | currency: 'EUR' }} </td>
+            <td mat-footer-cell *matFooterCellDef> {{ getTotalDebit() | currency: 'EUR' }} </td>
+          </ng-container>
+
+          <!-- credit Column -->
+          <ng-container matColumnDef="credit">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Crédit </th>
+            <td mat-cell *matCellDef="let detail"> {{ toNumber(detail.credit) | currency: 'EUR' }} </td>
+            <td mat-footer-cell *matFooterCellDef> {{ getTotalCredit() | currency: 'EUR' }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedFooterColumns"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </ng-template>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        <i class="material-icons-outlined" >exposure_zero</i>
+        <span>Détail de Pièces trouv&eacute;</span>
+      </div>
+    </ng-template>
+  </div>
